@@ -64,7 +64,7 @@ class Board {
       }
     }
 
-    this.getCell(this.width - 2, 0).dig();
+    this.setPlayer(start.bottom);
   }
 
   getCell(x, y) {
@@ -138,9 +138,18 @@ new Vue({
   },
 
   mounted() {
+    $(document).on('keydown', event => this.onKeyDown(event));
+  },
+
+  destroyed() {
+    $(document).off('keydown');
   },
 
   methods: {
+    onKeyDown(event) {
+      const dir = { w: 0, d: 1, s: 2, a: 3 }[event.key];
+    },
+
     check() {
     },
 
