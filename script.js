@@ -18,9 +18,9 @@ Vue.component('modal-alert', {
   },
 });
 
-class Board extends Array {
+class Board {
   constructor(width, height) {
-    super();
+    this.list = [];
 
     this.width = width;
     this.height = height;
@@ -31,7 +31,7 @@ class Board extends Array {
   async init() {
     for (let y = 0; y < this.height; y++)
       for (let x = 0; x < this.width; x++)
-        this.push(new Cell(this, x, y, Cell.Wall));
+        this.list.push(new Cell(this, x, y, Cell.Wall));
 
     this.getCell(1, this.height - 1).dig();
     this.getCell(this.width - 2, 0).dig();
@@ -72,7 +72,7 @@ class Board extends Array {
   getCell(x, y) {
     return x < 0 || this.width <= x || y < 0 || this.height <= y
       ? null
-      : this[y * this.width + x];
+      : this.list[y * this.width + x];
   }
 }
 

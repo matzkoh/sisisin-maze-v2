@@ -13,7 +13,7 @@
   <div id="app">
     <div class="board">
       <div class="ino"></div>
-      <div v-for="(cell, i) in board" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
+      <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="fade">
       <button v-if="retryShown" class="retry" @click="retry">↻</button>
