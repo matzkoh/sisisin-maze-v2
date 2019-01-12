@@ -23,6 +23,8 @@ class Board {
     this.list = [];
     this.width = width;
     this.height = height;
+    this.start = null;
+    this.goal = null;
     this.player = null;
     this.init();
   }
@@ -55,7 +57,8 @@ class Board {
       }
     }
 
-    this.getCell(this.width - 2, 0).dig();
+    this.goal = this.getCell(this.width - 2, 0);
+    this.goal.dig();
 
     let start = this.getCell(1, this.height - 2);
     while (true) {
@@ -66,7 +69,8 @@ class Board {
       }
     }
 
-    this.setPlayer(start.bottom);
+    this.start = start.bottom;
+    this.setPlayer(this.start);
   }
 
   getCell(x, y) {
