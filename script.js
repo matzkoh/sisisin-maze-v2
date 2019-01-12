@@ -41,7 +41,7 @@ class Board {
     const points = [this.getCell(1, this.height - 2).dig()];
 
     while (next || points.length) {
-      await wait(0);
+      // await wait(0);
 
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
       const targets = cell.around
@@ -55,12 +55,20 @@ class Board {
       next = targets[targets.length * Math.random() | 0];
       next.dig();
 
-      if (0 < targets.length) {
+      if (1 < targets.length) {
         points.push(cell);
       }
     }
 
-    this.getCell(this.width - 2, 0).dig();
+    let goal = this.getCell(this.width - 2, 1);
+    while (true) {
+      if (goal.isPath) {
+        goal.top.dig();
+        break;
+      } else {
+        goal = goal.left;
+      }
+    }
   }
 
   getCell(x, y) {
