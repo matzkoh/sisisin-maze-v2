@@ -42,30 +42,19 @@ class Board {
 
     const points = [this.getCell(1, this.height - 2).dig()];
 
-    while (points.length) {
+    while (nepoints.length) {
       await wait(100);
 
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
-
-      const targets = [
-        [0, cell.top2],
-        [1, cell.right2],
-        [2, cell.bottom2],
-        [3, cell.left2],
-      ].filter(([i, c]) => c && c.isWall);
+      const targets = cell.around.filter(c => c && c.isWall && 2 < c.around.filter(c => c && c.isWall).length);
 
       if (!targets.length) {
         next = null;
         continue;
       }
 
-      [dir, next] = targets[targets.length * Math.random() | 0];
-      cell.getNeighborByDir(dir).dig();
+      next = targets[targets.length * Math.random() | 0];
       next.dig();
-
-      if (1 < targets.length) {
-        points.push(cell);
-      }
     }
   }
 
@@ -103,11 +92,7 @@ class Cell {
   get right() { return this.board.getCell(this.x + 1, this.y); }
   get bottom() { return this.board.getCell(this.x, this.y + 1); }
   get left() { return this.board.getCell(this.x - 1, this.y); }
-
-  get top2() { return this.board.getCell(this.x, this.y - 2); }
-  get right2() { return this.board.getCell(this.x + 2, this.y); }
-  get bottom2() { return this.board.getCell(this.x, this.y + 2); }
-  get left2() { return this.board.getCell(this.x - 2, this.y); }
+  get around() { return [this.top, this.right, this.bottom, this.left]; }
 
   get isPath() { return this.type === Cell.Path; }
   get isWall() { return this.type === Cell.Wall; }
