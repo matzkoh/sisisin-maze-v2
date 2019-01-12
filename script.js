@@ -43,6 +43,7 @@ class Board extends Array {
 
     while (points.length) {
       const cell = next || points.splice(points.length * Math.random() | 0, 1);
+      const top2 = cell.top2;
 
       const targets = [
         [0, cell.top2],
@@ -67,7 +68,9 @@ class Board extends Array {
   }
 
   getCell(x, y) {
-    return this[y * this.width + x] || null;
+    return x < 0 || this.width <= x || y < 0 || this.height <= y
+      ? null
+      : this[y * this.width + x];
   }
 }
 
