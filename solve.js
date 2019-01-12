@@ -1,25 +1,23 @@
 function solve(board) {
-  const queue = [[board.player, null]];
+  const queue = [[null, board.player, null]];
   const memo = new Map();
 
   while (queue.length) {
-    const [cell, prev] = queue.shift();
-    memo.set(cell, prev);
+    const [prev, cell, dir] = queue.shift();
+    memo.set(cell, [prev, dir]);
     if (cell === board.goal) {
       break;
     }
     queue.push(...cell.around
-      .map((c, dir) => c && c.isPath && !memo.has(c) && [c, cell, dir])
+      .map((c, dir) => c && c.isPath && !memo.has(c) && [cell, c, dir])
       .filter(Boolean));
   }
 
-  const dir = [];
+  const dirs = [];
   let cell = board.goal;
   while (cell) {
-    const prev = memo.get(cell);
-    const dx = cell.x - prev.x;
-    const dy = cell.y - prev.y;
-    dir.unshift(dx + 1 + 2 - dy);
+    const [prev, dir] = memo.get(cell);
+    dirs.unshift(dir);
     cell = prev;
   }
 }
