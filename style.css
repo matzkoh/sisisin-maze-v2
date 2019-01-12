@@ -202,8 +202,9 @@ body {
 
 .time {
   background: #010;
-  border-radius: 0.2em;
+  border-radius: 0.1em;
   color: #fff;
+      background-image: linear-gradient(-60deg,transparent 40%, rgba(255,255,255,.8) 40%, rgba(255,255,255,.3) 60%, transparent 60%);
   text-shadow: 0 0 0.1em #ff0;
   font: 2rem bold;
 }

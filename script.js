@@ -204,7 +204,10 @@ new Vue({
   computed: {
     time() {
       const ms = this.endedAt - this.startedAt;
-      return `${(ms / 1000 / 60 | 0}`;
+      const minutes = `${ms / 1000 / 60 | 0}`.padStart(2, '0');
+      const seconds = `${ms / 1000 % 60 | 0}`.padStart(2, '0');
+      const mseconds = `${ms % 1000}`.padStart(3, '0');
+      return `${minutes}:${seconds}.${mseconds}`;
     },
   },
 
