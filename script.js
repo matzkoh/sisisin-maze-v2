@@ -1,6 +1,6 @@
 /* global Vue:false */
 
-const quickness = Math.random() * 100;
+const quickness = 50 + Math.random() * 50;
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 Vue.component('modal-alert', {
@@ -261,9 +261,11 @@ new Vue({
       const keys = 'wdsa';
 
       for (const dir of dirs) {
-        const event = new KeyboardEvent('keydown', {key: keys[dir]});
-        document.dispatchEvent(event);
-        await wait(100);
+        document.dispatchEvent(
+          new KeyboardEvent('keydown', {key: keys[dir]})
+        );
+
+        await wait(quickness);
       }
     },
 

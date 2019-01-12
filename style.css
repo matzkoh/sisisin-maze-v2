@@ -106,11 +106,11 @@ body {
 }
 
 @keyframes vibrate {
-    0% { margin-left: -0.3rem; margin-top: -0.3rem; }
-   25% { margin-left:  0.3rem; margin-top:  0.3rem; }
-   50% { margin-left: -0.3rem; margin-top:  0.3rem; }
-   75% { margin-left:  0.3rem; margin-top: -0.3rem; }
-  100% { margin-left: -0.3rem; margin-top: -0.3rem; }
+    0% { transform: translate(-0.2rem, -0.2rem); }
+   25% { transform: translate( 0.2rem,  0.2rem); }
+   50% { transform: translate(-0.2rem,  0.2rem); }
+   75% { transform: translate( 0.2rem, -0.2rem); }
+  100% { transform: translate(-0.2rem, -0.2rem); }
 }
 
 .vibrate {
