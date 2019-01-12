@@ -37,19 +37,35 @@ class Board extends Array {
     let x = 1;
     let y = this.height - 1;
 
-    this.getCell(x, y).type = Cell.Path;
+    this.getCell(x, y).dig();
     y--;
 
     points.push([x, y]);
-    this.getCell(x, y).type = Cell.Path;
+    this.getCell(x, y).dig();
 
+    const a = [];
     for (let i = 0; i < 4; i++) {
-      const nx = x
+      const dx = (2 - i) % 2;
+      const dy = (i - 1) % 2;
+      const nx = x + dx * 2;
+      const ny = y + dy * 2;
+      const cell = this.getCell(nx, ny);
+
+      if (cell && cell.isWall) {
+        a.push(cell);
+      }
     }
+
+    if (a.length) {
+      const cell = a[a.length * Math.random() | 0];
+      cell.dig();
+      points.push(cell);
+    }
+
   }
 
   getCell(x, y) {
-    return this[y * this.width + x];
+    return this[y * this.width + x] || null;
   }
 }
 
@@ -60,6 +76,19 @@ class Cell {
     this.y = y;
     this.type = type;
   }
+
+  dig() {
+    this.type = Cell.Path;
+  }
+
+  get top() { return this.board.getCell(this.x, this.y); }
+  get right() { return this.board.getCell(this.x, this.y); }
+  get bottom() { return this.board.getCell(this.x, this.y); }
+  get left() { return this.board.getCell(this.x, this.y); }
+
+  get isPath() { return this.type === Cell.Path; }
+  get isWall() { return this.type === Cell.Wall; }
+  get isPlayer() { return this.type === Cell.Player; }
 }
 
 Cell[Cell.Path = 0] = 'Path';
