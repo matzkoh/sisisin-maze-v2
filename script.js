@@ -161,11 +161,14 @@ new Vue({
       retryShown: false,
       startedAt: 0,
       endedAt: 0,
-      board: new Board(15, 15),
+      board: new Board(5, 5),
     };
   },
 
   computed: {
+    time() {
+      return ((this.endedAt - this.startedAt) / 1000).toFixed(3);
+    },
   },
 
   created() {
@@ -217,20 +220,9 @@ new Vue({
     },
 
     async finish() {
+      this.endedAt = Date.now();
       this.started = false;
       this.finished = true;
-      this.endedAt = Date.now();
-
-      await wait(500);
-
-      this.nyans.push({
-        x0: this.blankX,
-        y0: this.blankY,
-        x: this.blankX,
-        y: this.blankY,
-      });
-
-      await wait(1000);
 
       await this.openModal();
 

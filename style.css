@@ -25,8 +25,8 @@ body {
 .board {
   position: relative;
   display: grid;
-  grid-template-rows: 3rem repeat(15, 1fr);
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: 3rem repeat(var(--width), 1fr);
+  grid-template-columns: repeat(var(--height), 1fr);
   user-select: none;
 }
 
@@ -127,6 +127,7 @@ body {
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 4px;
+  text-align: center;
   box-shadow: 0 2px 8px #0006;
   transition: 300ms ease;
 }
@@ -148,4 +149,8 @@ body {
 .modal-enter > .modal-container,
 .modal-leave-to > .modal-container {
   transform: scale(1.1);
+}
+
+.time {
+  font: 2rem bold;
 }

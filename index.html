@@ -12,7 +12,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="board">
+    <div class="board" :style="{'--width': board.width, '--height': board.height}">
       <div class="ino"></div>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
@@ -25,9 +25,9 @@
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
       <div class="modal-header">ゲームクリア</div>
       <div class="modal-body">
-        <div>{{size}} をクリア！</div>
-        <div>操作数は {{count}} 回</div>
-        <div>タイムは {{time}} 秒でした</div>
+        <img src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw2.png">
+        <div>クリアタイム</div>
+        <div class="time">{{time}} 秒</div>
       </div>
     </modal-alert>
   </div>
