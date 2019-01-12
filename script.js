@@ -83,15 +83,6 @@ new Vue({
   },
 
   methods: {
-    getNyanStyle(nyan) {
-      return {
-        left: `${this.width * nyan.x}px`,
-        top: `${this.height * nyan.y}px`,
-        backgroundSize: `${this.width * this.sizeW}px ${this.height * this.sizeH}px`,
-        backgroundPosition: `-${this.width * nyan.x0}px -${this.height * nyan.y0}px`,
-      };
-    },
-
     check() {
       const w = this.sizeW;
       return this.nyans.every(({x, y}, i) => x === i % w && y === (i / w | 0));
