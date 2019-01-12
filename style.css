@@ -113,6 +113,10 @@ body {
   100% { margin-left: -0.3rem; margin-top: -0.3rem; }
 }
 
+.vibrate {
+  animation: 0.1s vibrate infinite;
+}
+
 .modal {
   display: flex;
   position: fixed;

@@ -1,5 +1,6 @@
 /* global Vue:false */
 
+const quickness = Math.random() * 100;
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 Vue.component('modal-alert', {
@@ -217,7 +218,6 @@ new Vue({
 
   methods: {
     onKeyDown(event) {
-      console.log(event.key);
       if (this.finished) {
         return;
       }
@@ -258,11 +258,10 @@ new Vue({
 
     async startAutoSolve() {
       const dirs = this.board.solve();
-      const keyMap = 
+      const keys = 'wdsa';
 
       for (const dir of dirs) {
-        const event = new KeyboardEvent('keydown');
-        event.key = '';
+        const event = new KeyboardEvent('keydown', {key: keys[dir]});
         document.dispatchEvent(event);
         await wait(100);
       }
