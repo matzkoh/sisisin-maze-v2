@@ -18,7 +18,7 @@ body {
 #app {
   display: grid;
   width: 100vmin;
-  height: 100vmin;
+  height: 100vh;
   margin: auto;
 }
 
@@ -27,27 +27,7 @@ body {
   display: grid;
   grid-template-rows: repeat(15, 1fr);
   grid-template-columns: repeat(15, 1fr);
-  border: 1vmin solid #333;
   user-select: none;
-}
-
-.board::before,
-.board::after {
-  content: "";
-  position: absolute;
-  width: calc(100% / 15);
-  height: 1vmin;
-  background-color: #fff;
-}
-
-.board::before {
-  bottom: 100%;
-  right: 0;
-}
-
-.board::after {
-  top: 100%;
-  left: 0;
 }
 
 .wall {
