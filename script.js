@@ -55,6 +55,8 @@ class Board {
       }
     }
 
+    this.getCell(this.width - 2, 0).dig();
+
     let start = this.getCell(1, this.height - 2);
     while (true) {
       if (start.isPath) {
@@ -74,8 +76,39 @@ class Board {
   }
 
   setPlayer(cell) {
+    if (this.player) {
+      this.player.type = Cell.Path;
+    }
     cell.type = Cell.Player;
     this.player = cell;
+  }
+
+  movePlayerTop() {
+    const cell = this.player.top;
+    if (cell.isPath) {
+      this.setPlayer(cell);
+    }
+  }
+
+  movePlayerRight() {
+    const cell = this.player.top;
+    if (cell.isPath) {
+      this.setPlayer(cell);
+    }
+  }
+
+  movePlayerBottom() {
+    const cell = this.player.top;
+    if (cell.isPath) {
+      this.setPlayer(cell);
+    }
+  }
+
+  movePlayerLeft() {
+    const cell = this.player.top;
+    if (cell.isPath) {
+      this.setPlayer(cell);
+    }
   }
 }
 
@@ -148,6 +181,11 @@ new Vue({
   methods: {
     onKeyDown(event) {
       const dir = { w: 0, d: 1, s: 2, a: 3 }[event.key];
+      if (dir === undefined) {
+        return;
+      }
+
+      
     },
 
     check() {
