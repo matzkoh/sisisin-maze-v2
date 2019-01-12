@@ -139,13 +139,12 @@ body {
   transition: 300ms ease;
 }
 
-.modal-header {
-  color: var(--opt-color);
-  font-weight: bold;
-}
-
 .modal-body {
   margin-top: 1rem;
+}
+
+.modal-header {
+  white-space: nowrap;
 }
 
 .modal-enter,
@@ -156,6 +155,16 @@ body {
 .modal-enter > .modal-container,
 .modal-leave-to > .modal-container {
   transform: scale(1.1);
+}
+
+.ia-1 {
+  font-family: "Arial", sans-serif;
+}
+
+.ia-2 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Vollkorn", serif;
 }
 
 .knzw {
