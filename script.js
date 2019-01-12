@@ -114,6 +114,36 @@ class Board {
       this.setPlayer(cell);
     }
   }
+
+  solve() {
+    const queue = [[null, this.player, null]];
+    const memo = new Map();
+
+    while (queue.length) {
+      const [prev, cell, dir] = queue.shift();
+      memo.set(cell, [prev, dir]);
+      if (cell === this.goal) {
+        break;
+      }
+      queue.push(...cell.around
+        .map((c, dir) => c && c.isPath && !memo.has(c) && [cell, c, dir])
+        .filter(Boolean));
+    }
+
+    const dirs = [];
+    let cell = this.goal;
+
+    while (cell) {
+      const [prev, dir] = memo.get(cell);
+      if (!prev) {
+        break;
+      }
+      dirs.unshift(dir);
+      cell = prev;
+    }
+
+    return dirs;
+  }
 }
 
 class Cell {
@@ -159,7 +189,6 @@ new Vue({
 
   data() {
     const board = new Board(15, 15);
-    window.board = board;
 
     return {
       started: false,
@@ -188,6 +217,7 @@ new Vue({
 
   methods: {
     onKeyDown(event) {
+      console.log(event.key);
       if (this.finished) {
         return;
       }
@@ -209,6 +239,10 @@ new Vue({
           this.board.movePlayerLeft();
           break;
 
+        case 'Enter':
+          this.startAutoSolve();
+          break;
+
         default:
           return;
       }
@@ -219,6 +253,18 @@ new Vue({
 
       if (this.board.player.y === 0) {
         this.finish();
+      }
+    },
+
+    async startAutoSolve() {
+      const dirs = this.board.solve();
+      const keyMap = 
+
+      for (const dir of dirs) {
+        const event = new KeyboardEvent('keydown');
+        event.key = '';
+        document.dispatchEvent(event);
+        await wait(100);
       }
     },
 

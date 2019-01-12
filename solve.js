@@ -15,11 +15,17 @@ function solve(board) {
 
   const dirs = [];
   let cell = board.goal;
+
   while (cell) {
     const [prev, dir] = memo.get(cell);
+    if (!prev) {
+      break;
+    }
     dirs.unshift(dir);
     cell = prev;
   }
+
+  return dirs;
 }
 
-solve(window.board);
+console.log(solve(window.board));
