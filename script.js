@@ -21,28 +21,23 @@ Vue.component('modal-alert', {
 class Board {
   constructor(width, height) {
     this.list = [];
-
     this.width = width;
     this.height = height;
-
+    this.player = null;
     this.init();
   }
 
-  async init() {
+  init() {
     for (let y = 0; y < this.height; y++)
       for (let x = 0; x < this.width; x++)
         this.list.push(new Cell(this, x, y, Cell.Wall));
 
-    this.getCell(1, this.height - 1).dig();
-
     let next;
     let dir;
 
-    const points = [this.getCell(1, this.height - 2).dig()];
+    const points = [this.getCell(this.width - 2, 1).dig()];
 
     while (next || points.length) {
-      // await wait(0);
-
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
       const targets = cell.around
         .filter(c => c && c.isWall && 2 < c.around.filter(c => c && c.isWall).length);
@@ -60,21 +55,27 @@ class Board {
       }
     }
 
-    let goal = this.getCell(this.width - 2, 1);
+    let start = this.getCell(1, this.height - 2);
     while (true) {
-      if (goal.isPath) {
-        goal.top.dig();
+      if (start.isPath) {
         break;
       } else {
-        goal = goal.left;
+        start = start.right;
       }
     }
+
+    this.getCell(this.width - 2, 0).dig();
   }
 
   getCell(x, y) {
     return x < 0 || this.width <= x || y < 0 || this.height <= y
       ? null
       : this.list[y * this.width + x];
+  }
+
+  setPlayer(cell) {
+    cell.type = Cell.Player;
+    this.player = cell;
   }
 }
 
