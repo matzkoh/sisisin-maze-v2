@@ -17,7 +17,7 @@
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="flash">
-      <div v-if="started" class="start">スタート！！</div>
+      <div v-if="started" class="start">スタート</div>
     </transition>
     <transition name="fade">
       <button v-if="retryShown" class="retry" @click="retry">↻</button>
