@@ -34,27 +34,11 @@ class Board extends Array {
         this.push(new Cell(this, x, y, Cell.Wall));
 
     const points = [];
-    let x = 1;
-    let y = this.height - 1;
 
-    this.getCell(x, y).dig();
-    y--;
+    let cell = this.getCell(1, this.height - 1).dig().top.dig();
+    points.push(cell);
 
-    points.push([x, y]);
-    this.getCell(x, y).dig();
-
-    const a = [];
-    for (let i = 0; i < 4; i++) {
-      const dx = (2 - i) % 2;
-      const dy = (i - 1) % 2;
-      const nx = x + dx * 2;
-      const ny = y + dy * 2;
-      const cell = this.getCell(nx, ny);
-
-      if (cell && cell.isWall) {
-        a.push(cell);
-      }
-    }
+    const a = [cell.top, cell.right, cell.bottom, cell.left].filter(Boolean);
 
     if (a.length) {
       const cell = a[a.length * Math.random() | 0];
@@ -79,12 +63,18 @@ class Cell {
 
   dig() {
     this.type = Cell.Path;
+    return this;
   }
 
-  get top() { return this.board.getCell(this.x, this.y); }
-  get right() { return this.board.getCell(this.x, this.y); }
-  get bottom() { return this.board.getCell(this.x, this.y); }
-  get left() { return this.board.getCell(this.x, this.y); }
+  get top() { return this.board.getCell(this.x, this.y - 1); }
+  get right() { return this.board.getCell(this.x + 1, this.y); }
+  get bottom() { return this.board.getCell(this.x, this.y + 1); }
+  get left() { return this.board.getCell(this.x - 1, this.y); }
+
+  get top2() { return this.board.getCell(this.x, this.y - 2); }
+  get right2() { return this.board.getCell(this.x + 2, this.y); }
+  get bottom2() { return this.board.getCell(this.x, this.y + 2); }
+  get left2() { return this.board.getCell(this.x - 2, this.y); }
 
   get isPath() { return this.type === Cell.Path; }
   get isWall() { return this.type === Cell.Wall; }
