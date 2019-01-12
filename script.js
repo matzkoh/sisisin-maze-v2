@@ -161,7 +161,7 @@ new Vue({
       retryShown: false,
       startedAt: 0,
       endedAt: 0,
-      board: new Board(5, 5),
+      board: new Board(15, 15),
     };
   },
 
