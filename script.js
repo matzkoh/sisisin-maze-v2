@@ -23,9 +23,7 @@ new Vue({
 
   template: `
     <div class="board">
-      <transition-group tag="div" name="nyan" class="sime" :class="{bounce: finished}" :style="simeStyle">
-        <div v-for="(nyan, i) in nyans" :key="i" class="nyan" @click="click(nyan)" :style="getNyanStyle(nyan)"/>
-      </transition-group>
+      <div v-for="(nyan, i) in nyans" :key="i" class="cell" @click="click(nyan)" :style="getNyanStyle(nyan)"/>
       <transition name="fade">
         <button v-if="retryShown" class="retry" @click="retry">↻</button>
       </transition>
@@ -187,12 +185,6 @@ new Vue({
       this.finished = true;
       this.endedAt = Date.now();
 
-      this.cv({
-        size: this.size,
-        count: this.count,
-        time: this.time,
-      });
-
       await wait(500);
 
       this.nyans.push({
@@ -213,27 +205,6 @@ new Vue({
       Object.assign(this.$data, this.$options.data.call(this));
       this.$options.created.forEach(fn => fn.call(this));
       this.$options.mounted.forEach(fn => fn.call(this));
-    },
-
-    cv(cvDetail) {
-      if (!window._adp) {
-        window._adp = [];
-      }
-
-      window._adp.push({
-        cvDetail,
-        s: 'wc',
-        a: '403',
-        f: '478',
-        u: 'https://a403.stg-tracker.adplan7.com/wc/c/j/478',
-        db: 'https://a403.stg-tracker.adplan7.com/db/pb/403',
-      });
-
-      const script = document.createElement('script');
-      script.src = 'https://stg-widget.adplan7.com/s/1.0/wc.js';
-      script.charset = 'utf-8';
-      document.head.appendChild(script);
-      document.adoptNode(script);
     },
   },
 });

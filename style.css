@@ -16,11 +16,20 @@ body {
 }
 
 .board {
-  position: relative;
+  display: grid;
   margin: auto;
-  background: #fff3;
-  box-shadow: 1px 2px 5px #0003;
+  background: #000c;
+  padding: 1%;
   user-select: none;
+}
+
+.cell {
+}
+
+.wall {
+}
+
+.knzw {
 }
 
 .sime {
@@ -31,11 +40,6 @@ body {
   position: absolute;
   background: url("https://emoji.slack-edge.com/T04Q5G460/spining_sisisin/f0a7e075a3b15f2c.gif") no-repeat;
   transition: 200ms ease-out;
-}
-
-.nyan-enter,
-.nyan-leave-to {
-  opacity: 0;
 }
 
 .retry {
