@@ -38,10 +38,15 @@ class Board extends Array {
     let cell = this.getCell(1, this.height - 1).dig().top.dig();
     points.push(cell);
 
-    const a = [cell.top, cell.right, cell.bottom, cell.left].filter(Boolean);
+    const a = [
+      [0, cell.top2],
+      [1, cell.right2],
+      [2, cell.bottom2],
+      [3, cell.left2],
+    ].filter(([i, c]) => c && c.isWall);
 
     if (a.length) {
-      const cell = a[a.length * Math.random() | 0];
+      const dir = a[a.length * Math.random() | 0];
       cell.dig();
       points.push(cell);
     }
@@ -64,6 +69,16 @@ class Cell {
   dig() {
     this.type = Cell.Path;
     return this;
+  }
+
+  getNeighborByDir(dir) {
+    switch (+dir) {
+      case 0: return this.top;
+      case 1: return this.right;
+      case 2: return this.bottom;
+      case 3: return this.left;
+      default: throw new Error(`invalid dir: ${dir}`);
+    }
   }
 
   get top() { return this.board.getCell(this.x, this.y - 1); }
