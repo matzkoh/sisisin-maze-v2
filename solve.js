@@ -4,14 +4,23 @@ function solve(board) {
 
   while (queue.length) {
     const [cell, prev] = queue.shift();
+    memo.set(cell, prev);
     if (cell === board.goal) {
       break;
     }
-    if (memo.has(cell)) {
-      continue;
-    }
-    memo.set(cell, prev);
-    queue.push(...cell.around.filter(c => c && c.isPath && !memo.has(c)).map(c => [c, cell]));
+    queue.push(...cell.around
+      .map((c, dir) => c && c.isPath && !memo.has(c) && [c, cell, dir])
+      .filter(Boolean));
+  }
+
+  const dir = [];
+  let cell = board.goal;
+  while (cell) {
+    const prev = memo.get(cell);
+    const dx = cell.x - prev.x;
+    const dy = cell.y - prev.y;
+    dir.unshift(dx + 1 + 2 - dy);
+    cell = prev;
   }
 }
 
