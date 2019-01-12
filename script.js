@@ -188,7 +188,7 @@ new Vue({
   el: '#app',
 
   data() {
-    const board = new Board(15, 15);
+    const board = new Board(5, 5);
 
     return {
       started: false,
@@ -203,7 +203,8 @@ new Vue({
 
   computed: {
     time() {
-      return ((this.endedAt - this.startedAt) / 1000).toFixed(3);
+      const ms = this.endedAt - this.startedAt;
+      return `${(ms / 1000 / 60 | 0}`;
     },
   },
 

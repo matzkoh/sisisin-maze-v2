@@ -189,8 +189,10 @@ body {
 }
 
 .ia-2 {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 2em;
+}
+
+.vollkorn {
   font-family: "Vollkorn", serif;
 }
 
@@ -199,5 +201,9 @@ body {
 }
 
 .time {
+  background: #010;
+  border-radius: 0.2em;
+  color: #fff;
+  text-shadow: 0 0 0.1em #ff0;
   font: 2rem bold;
 }
