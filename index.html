@@ -18,11 +18,14 @@
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="fade">
-      <div v-if="!started" class="splash">
+      <div v-if="!started" class="splash" @click="start">
         <div class="ia-2">Innovation Agency</div>
         <div>への道</div>
         <div class="wasd">
+          ↑<br>
           <code class="key">w</code><br>
+          ←<code class="key">a</code><code class="key">s</code><code class="key">d</code>→<br>
+          ↓
         </div>
       </div>
     </transition>
