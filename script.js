@@ -37,26 +37,32 @@ class Board extends Array {
 
     let cell = this.getCell(1, this.height - 1).dig().top.dig();
     points.push(cell);
-    return;
+
+    let next;
+    let dir;
 
     while (points.length) {
-      const cell = points.splice(points.length * Math.random() | 0, 1);
+      const cell = next || points.splice(points.length * Math.random() | 0, 1);
 
-      const a = [
+      const targets = [
         [0, cell.top2],
         [1, cell.right2],
         [2, cell.bottom2],
         [3, cell.left2],
       ].filter(([i, c]) => c && c.isWall);
 
-      if (!a.length) {
+      if (!targets.length) {
+        next = null;
         continue;
       }
 
-      const [dir, next] = a[a.length * Math.random() | 0];
+      [dir, next] = targets[targets.length * Math.random() | 0];
       cell.getNeighborByDir(dir).dig();
       next.dig();
-      points.push(next);
+
+      if (1 < targets.length) {
+        points.push(cell);
+      }
     }
   }
 
