@@ -12,9 +12,7 @@
 <body>
   <div id="app">
     <div class="board">
-      <div class="ino">
-        
-      </div>
+      <div class="ino"></div>
       <div v-for="(cell, i) in board" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="fade">
