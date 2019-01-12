@@ -34,19 +34,18 @@ class Board {
         this.list.push(new Cell(this, x, y, Cell.Wall));
 
     this.getCell(1, this.height - 1).dig();
-    this.getCell(this.width - 2, 0).dig();
-
 
     let next;
     let dir;
 
     const points = [this.getCell(1, this.height - 2).dig()];
 
-    while (nepoints.length) {
-      await wait(100);
+    while (next || points.length) {
+      await wait(0);
 
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
-      const targets = cell.around.filter(c => c && c.isWall && 2 < c.around.filter(c => c && c.isWall).length);
+      const targets = cell.around
+        .filter(c => c && c.isWall && 2 < c.around.filter(c => c && c.isWall).length);
 
       if (!targets.length) {
         next = null;
@@ -55,7 +54,13 @@ class Board {
 
       next = targets[targets.length * Math.random() | 0];
       next.dig();
+
+      if (0 < targets.length) {
+        points.push(cell);
+      }
     }
+
+    this.getCell(this.width - 2, 0).dig();
   }
 
   getCell(x, y) {
