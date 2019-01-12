@@ -23,6 +23,7 @@ body {
 }
 
 .board {
+  position: relative;
   display: grid;
   grid-template-rows: repeat(15, 1fr);
   grid-template-columns: repeat(15, 1fr);
@@ -30,7 +31,23 @@ body {
   user-select: none;
 }
 
-.cell {
+.board::before,
+.board::after {
+  content: "";
+  position: absolute;
+  width: calc(100% / 15);
+  height: 1vmin;
+  background-color: #fff;
+}
+
+.board::before {
+  bottom: 100%;
+  right: 0;
+}
+
+.board::after {
+  top: 100%;
+  left: 0;
 }
 
 .wall {
@@ -38,8 +55,8 @@ body {
 }
 
 .player {
-  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw.png") top no-repeat;
-  background-size: 200% 200%;
+  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw.png") 47% 5% no-repeat;
+  background-size: 170%;
   border-radius: 50%;
 }
 

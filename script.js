@@ -27,7 +27,7 @@ class Board extends Array {
 
     for (let y = 0; y < this.height; y++)
       for (let x = 0; x < this.width; x++)
-        this.push(new Cell(this, x, y, Cell.Player));
+        this.push(new Cell(this, x, y, Cell.Wall));
   }
 
   init() {
