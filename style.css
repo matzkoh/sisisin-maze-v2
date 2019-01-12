@@ -25,9 +25,13 @@ body {
 .board {
   position: relative;
   display: grid;
-  grid-template-rows: 2rem repeat(15, 1fr);
+  grid-template-rows: 3rem repeat(15, 1fr);
   grid-template-columns: repeat(15, 1fr);
   user-select: none;
+}
+
+.ino {
+  grid-column: 1 / span 15;
 }
 
 .wall {
