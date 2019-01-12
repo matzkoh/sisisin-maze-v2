@@ -18,7 +18,29 @@ Vue.component('modal-alert', {
   },
 });
 
-const board = [...Array(15)].map(() => []);
+class Board {
+  constructor() {
+    this.cells = Array(15 * 15).map((_, i) => new Cell(this, i % 15, i / 15 | 0, 0));
+  }
+
+  getCell(x, y) {
+  }
+}
+
+class Cell {
+  constructor(board, x, y, type) {
+    this.board = board;
+    this.x = x;
+    this.y = y;
+    this.type = type;
+  }
+
+  top() {
+    
+  }
+}
+
+const board = [...Array(15)].map(() => Array(15).fill(1));
 
 new Vue({
   el: '#app',
