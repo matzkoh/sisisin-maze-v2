@@ -212,11 +212,12 @@ new Vue({
     },
 
     start() {
-      this.started = true;
       this.startedAt = Date.now();
+      this.started = true;
     },
 
     async finish() {
+      this.started = false;
       this.finished = true;
       this.endedAt = Date.now();
 
