@@ -43,7 +43,7 @@ class Board {
     const points = [this.getCell(1, this.height - 2).dig()];
 
     while (points.length) {
-      await wait(100);
+      await wait(200);
 
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
 
