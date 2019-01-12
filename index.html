@@ -20,7 +20,8 @@
       <div v-if="started" class="start">スタート</div>
     </transition>
     <transition name="fade">
-      <button v-if="retryShown" class="retry" @click="retry">↻</button>
+      <div v-if="retryShown" class="retry" @click="retry">
+      </div>
     </transition>
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
       <div class="modal-header">ゲームクリア</div>

@@ -171,9 +171,6 @@ new Vue({
     },
   },
 
-  created() {
-  },
-
   mounted() {
     $(document).on('keydown', event => this.onKeyDown(event));
   },
@@ -184,6 +181,10 @@ new Vue({
 
   methods: {
     onKeyDown(event) {
+      if (this.finished) {
+        return;
+      }
+
       switch (event.key) {
         case 'w':
           this.board.movePlayerTop();
@@ -221,7 +222,6 @@ new Vue({
 
     async finish() {
       this.endedAt = Date.now();
-      this.started = false;
       this.finished = true;
 
       await this.openModal();
@@ -239,8 +239,6 @@ new Vue({
 
     retry() {
       Object.assign(this.$data, this.$options.data.call(this));
-      this.$options.created.forEach(fn => fn.call(this));
-      this.$options.mounted.forEach(fn => fn.call(this));
     },
   },
 });
