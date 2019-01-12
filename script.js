@@ -25,13 +25,27 @@ class Board extends Array {
     this.width = width;
     this.height = height;
 
-    for (let y = 0; y < this.height; y++)
-      for (let x = 0; x < this.width; x++)
-        this.push(new Cell(this, x, y, Cell.Wall));
+    this.init();
   }
 
   init() {
+    for (let y = 0; y < this.height; y++)
+      for (let x = 0; x < this.width; x++)
+        this.push(new Cell(this, x, y, Cell.Wall));
+
     const points = [];
+    let x = 1;
+    let y = this.height - 1;
+
+    this.getCell(x, y).type = Cell.Path;
+    y--;
+
+    points.push([x, y]);
+    this.getCell(x, y).type = Cell.Path;
+
+    for (let i = 0; i < 4; i++) {
+      const nx = x
+    }
   }
 
   getCell(x, y) {
