@@ -42,12 +42,6 @@ new Vue({
   },
 
   computed: {
-    simeStyle() {
-      return {
-        width: `${this.width * this.sizeW}px`,
-        height: `${this.height * this.sizeH}px`,
-      };
-    },
     size() {
       return `${this.sizeW}x${this.sizeH}`;
     },
@@ -91,8 +85,6 @@ new Vue({
   methods: {
     getNyanStyle(nyan) {
       return {
-        width: `${this.width}px`,
-        height: `${this.height}px`,
         left: `${this.width * nyan.x}px`,
         top: `${this.height * nyan.y}px`,
         backgroundSize: `${this.width * this.sizeW}px ${this.height * this.sizeH}px`,

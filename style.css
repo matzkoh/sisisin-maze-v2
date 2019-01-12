@@ -22,27 +22,20 @@ body {
 
 .board {
   display: grid;
+  grid-template-rows: repeat(15, 1fr);
+  grid-template-columns: repeat(15, 1fr);
   padding: 1%;
   user-select: none;
 }
 
 .cell {
+  background: url("https://emoji.slack-edge.com/T04Q5G460/spining_sisisin/f0a7e075a3b15f2c.gif") no-repeat;
 }
 
 .wall {
 }
 
 .knzw {
-}
-
-.sime {
-  position: relative;
-}
-
-.nyan {
-  position: absolute;
-  background: url("https://emoji.slack-edge.com/T04Q5G460/spining_sisisin/f0a7e075a3b15f2c.gif") no-repeat;
-  transition: 200ms ease-out;
 }
 
 .retry {
