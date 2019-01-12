@@ -31,13 +31,14 @@ body {
 }
 
 .cell {
-  background: url("https://emoji.slack-edge.com/T04Q5G460/spining_sisisin/f0a7e075a3b15f2c.gif") no-repeat;
 }
 
 .wall {
+  background: #333;
 }
 
-.knzw {
+.player {
+  background: #ff0;
 }
 
 .retry {
