@@ -33,18 +33,17 @@ class Board extends Array {
       for (let x = 0; x < this.width; x++)
         this.push(new Cell(this, x, y, Cell.Wall));
 
-    const points = [];
-
     this.getCell(1, this.height - 1).dig();
     this.getCell(this.width - 2, 0).dig();
 
-    points.push(this.getCell(1, this.height - 2).dig());
 
     let next;
     let dir;
 
+    const points = [this.getCell(1, this.height - 2).dig()];
+
     while (points.length) {
-      await wait(100);
+      // await wait(100);
 
       const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
 
