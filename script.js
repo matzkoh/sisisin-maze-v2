@@ -20,10 +20,14 @@ Vue.component('modal-alert', {
 
 class Board {
   constructor() {
-    this.cells = Array(15 * 15).map((_, i) => new Cell(this, i % 15, i / 15 | 0, 0));
+    this.width = 15;
+    this.height = 15;
+    this.cells = Array(this.width * this.height)
+      .map((_, i) => new Cell(this, i % 15, i / 15 | 0, 0));
   }
 
   getCell(x, y) {
+    return this.cells[y + x * 15];
   }
 }
 
@@ -33,10 +37,6 @@ class Cell {
     this.x = x;
     this.y = y;
     this.type = type;
-  }
-
-  top() {
-    
   }
 }
 
