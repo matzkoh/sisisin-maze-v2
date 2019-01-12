@@ -34,11 +34,13 @@ body {
 }
 
 .wall {
-  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/sisisin.jpg") #fff center / contain no-repeat;
+  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/sisisin.jpg") center / contain no-repeat;
 }
 
 .player {
-  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw.png") center / contain no-repeat;
+  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw.png") top no-repeat;
+  background-size: 200% 200%;
+  border-radius: 50%;
 }
 
 .retry {
