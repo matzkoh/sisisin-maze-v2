@@ -26,7 +26,7 @@ body {
   display: grid;
   grid-template-rows: repeat(15, 1fr);
   grid-template-columns: repeat(15, 1fr);
-  padding: 1%;
+  border: 1vmin solid #333;
   user-select: none;
 }
 
@@ -34,11 +34,11 @@ body {
 }
 
 .wall {
-  background: #333;
+  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/sisisin.jpg") #fff center / contain no-repeat;
 }
 
 .player {
-  background: #ff0;
+  background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw.png") center / contain no-repeat;
 }
 
 .retry {
