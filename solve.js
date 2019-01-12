@@ -1,11 +1,11 @@
 function solve(board) {
-  const stack = [[board.player, null]];
+  const queue = [board.player];
   const memo = new Map();
 
-  while (stack.length) {
-    const [cell, prevCell] = stack.pop();
-    memo.set(cell, prevCell);
-    stack.push(...cell.around.filter(c => c && !memo.has(c)).map(c => [cell, c]));
+  while (queue.length) {
+    const cell = queue.shift();
+    memo.set(cell, true);
+    queue.push(...cell.around.filter(c => c && !memo.has(c)).map(c => [cell, c]));
   }
 }
 
