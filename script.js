@@ -21,23 +21,6 @@ Vue.component('modal-alert', {
 new Vue({
   el: '#app',
 
-  template: `
-    <div class="board">
-      <div v-for="(nyan, i) in nyans" :key="i" class="cell" @click="click(nyan)" :style="getNyanStyle(nyan)"/>
-      <transition name="fade">
-        <button v-if="retryShown" class="retry" @click="retry">↻</button>
-      </transition>
-      <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
-        <div class="modal-header">ゲームクリア</div>
-        <div class="modal-body">
-          <div>{{size}} をクリア！</div>
-          <div>操作数は {{count}} 回</div>
-          <div>タイムは {{time}} 秒でした</div>
-        </div>
-      </modal-alert>
-    </div>
-  `,
-
   data() {
     const [, sizeW, sizeH] = (location.search.match(/\bsize=(\d+)x(\d+)/) || [, 4, 4]).map(n => Math.max(n, 2));
 

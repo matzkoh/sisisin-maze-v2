@@ -15,10 +15,13 @@ body {
   color: #333;
 }
 
+#app {
+  max-width: 760px;
+  margin: auto;
+}
+
 .board {
   display: grid;
-  margin: auto;
-  background: #000c;
   padding: 1%;
   user-select: none;
 }

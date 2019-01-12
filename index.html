@@ -10,6 +10,21 @@
   <script src="/script.js" defer></script>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="board">
+      <div v-for="(nyan, i) in nyans" :key="i" class="cell" :style="getNyanStyle(nyan)"/>
+    </div>
+    <transition name="fade">
+      <button v-if="retryShown" class="retry" @click="retry">↻</button>
+    </transition>
+    <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
+      <div class="modal-header">ゲームクリア</div>
+      <div class="modal-body">
+        <div>{{size}} をクリア！</div>
+        <div>操作数は {{count}} 回</div>
+        <div>タイムは {{time}} 秒でした</div>
+      </div>
+    </modal-alert>
+  </div>
 </body>
 </html>
