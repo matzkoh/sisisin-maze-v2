@@ -28,22 +28,25 @@ class Board extends Array {
     this.init();
   }
 
-  init() {
+  async init() {
     for (let y = 0; y < this.height; y++)
       for (let x = 0; x < this.width; x++)
         this.push(new Cell(this, x, y, Cell.Wall));
 
     const points = [];
 
-    let cell = this.getCell(1, this.height - 1).dig().top.dig();
-    points.push(cell);
+    this.getCell(1, this.height - 1).dig();
+    this.getCell(this.width - 2, 0).dig();
+
+    points.push(this.getCell(1, this.height - 2).dig());
 
     let next;
     let dir;
 
     while (points.length) {
-      const cell = next || points.splice(points.length * Math.random() | 0, 1);
-      const top2 = cell.top2;
+      await wait(100);
+
+      const cell = next || points.splice(points.length * Math.random() | 0, 1)[0];
 
       const targets = [
         [0, cell.top2],
