@@ -1,6 +1,5 @@
 /* global Vue:false */
 
-const quickness = 50 + Math.random() * 50;
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 Vue.component('modal-alert', {
@@ -259,6 +258,7 @@ new Vue({
     async startAutoSolve() {
       const dirs = this.board.solve();
       const keys = 'wdsa';
+      const quickness = 50 + Math.random() * 50;
 
       for (const dir of dirs) {
         document.dispatchEvent(

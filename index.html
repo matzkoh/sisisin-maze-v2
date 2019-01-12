@@ -17,6 +17,15 @@
       <div class="ino"></div>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
+    <transition name="fade">
+      <div v-if="!started" class="splash">
+        <div class="ia-2">Innovation Agency</div>
+        <div>への道</div>
+        <div class="wasd">
+          <code class="key">w</code><br>
+        </div>
+      </div>
+    </transition>
     <transition name="flash">
       <div v-if="started" class="start">スタート</div>
     </transition>
