@@ -27,7 +27,7 @@ class Board extends Array {
 
     for (let y = 0; y < this.height; y++)
       for (let x = 0; x < this.width; x++)
-        this.push(new Cell(this, x, y, 0));
+        this.push(new Cell(this, x, y, Cell.Path));
   }
 
   getCell(x, y) {
@@ -44,10 +44,9 @@ class Cell {
   }
 }
 
-const CellType = {};
-CellType.path = CellType[ = 0;
-
-const board = [...Array(15)].map(() => Array(15).fill(1));
+Cell[Cell.Path = 0] = 'Path';
+Cell[Cell.Wall = 1] = 'Wall';
+Cell[Cell.Player = 2] = 'Player';
 
 new Vue({
   el: '#app',
