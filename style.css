@@ -82,7 +82,6 @@ body {
  100% { transform: scale(1.1) }
 }
 
-/* modal */
 .modal {
   display: flex;
   position: fixed;
