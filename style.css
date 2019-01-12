@@ -45,6 +45,13 @@ body {
 }
 
 .start {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font: 
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 1s ease-in;
 }
 
 .retry {
@@ -77,6 +84,10 @@ body {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.flash-enter {
+  opacity: 1;
 }
 
 .bounce {
