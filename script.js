@@ -18,16 +18,20 @@ Vue.component('modal-alert', {
   },
 });
 
-class Board {
-  constructor() {
-    this.width = 15;
-    this.height = 15;
-    this.cells = Array(this.width * this.height)
-      .map((_, i) => new Cell(this, i % 15, i / 15 | 0, 0));
+class Board extends Array {
+  constructor(width, height) {
+    super();
+
+    this.width = width;
+    this.height = height;
+
+    for (let y = 0; y < this.height; y++)
+      for (let x = 0; x < this.width; x++)
+        this.push(new Cell(this, x, y, 0));
   }
 
   getCell(x, y) {
-    return this.cells[y + x * 15];
+    return this[y * this.width + x];
   }
 }
 
@@ -39,6 +43,9 @@ class Cell {
     this.type = type;
   }
 }
+
+const CellType = {};
+CellType.path = CellType[ = 0;
 
 const board = [...Array(15)].map(() => Array(15).fill(1));
 
@@ -52,7 +59,7 @@ new Vue({
       retryShown: false,
       startedAt: 0,
       endedAt: 0,
-      board,
+      board: new Board(15, 15),
     };
   },
 
