@@ -85,28 +85,28 @@ class Board {
 
   movePlayerTop() {
     const cell = this.player.top;
-    if (cell.isPath) {
+    if (cell && cell.isPath) {
       this.setPlayer(cell);
     }
   }
 
   movePlayerRight() {
-    const cell = this.player.top;
-    if (cell.isPath) {
+    const cell = this.player.right;
+    if (cell && cell.isPath) {
       this.setPlayer(cell);
     }
   }
 
   movePlayerBottom() {
-    const cell = this.player.top;
-    if (cell.isPath) {
+    const cell = this.player.bottom;
+    if (cell && cell.isPath) {
       this.setPlayer(cell);
     }
   }
 
   movePlayerLeft() {
-    const cell = this.player.top;
-    if (cell.isPath) {
+    const cell = this.player.left;
+    if (cell && cell.isPath) {
       this.setPlayer(cell);
     }
   }
@@ -155,6 +155,7 @@ new Vue({
 
   data() {
     return {
+      started: false,
       finished: false,
       modalShown: false,
       retryShown: false,
@@ -180,26 +181,39 @@ new Vue({
 
   methods: {
     onKeyDown(event) {
-      const dir = { w: 0, d: 1, s: 2, a: 3 }[event.key];
-      if (dir === undefined) {
-        return;
+      switch (event.key) {
+        case 'w':
+          this.board.movePlayerTop();
+          break;
+
+        case 'd':
+          this.board.movePlayerRight();
+          break;
+
+        case 's':
+          this.board.movePlayerBottom();
+          break;
+
+        case 'a':
+          this.board.movePlayerLeft();
+          break;
+
+        default:
+          return;
       }
 
-      
+      if (!this.started) {
+        this.start();
+      }
+
+      if (this.board.player.y === 0) {
+        this.finish();
+      }
     },
 
-    check() {
-    },
-
-    move() {
-    },
-
-    async openModal() {
-      this.modalShown = true;
-
-      await new Promise(resolve => this.$once('modalClosing', resolve));
-
-      this.modalShown = false;
+    start() {
+      this.started = true;
+      this.startedAt = Date.now();
     },
 
     async finish() {
@@ -220,6 +234,14 @@ new Vue({
       await this.openModal();
 
       this.retryShown = true;
+    },
+
+    async openModal() {
+      this.modalShown = true;
+
+      await new Promise(resolve => this.$once('modalClosing', resolve));
+
+      this.modalShown = false;
     },
 
     retry() {

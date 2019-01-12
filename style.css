@@ -44,6 +44,9 @@ body {
   border-radius: 50%;
 }
 
+.start {
+}
+
 .retry {
   position: absolute;
   right: -25px;

@@ -17,6 +17,9 @@
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="fade">
+      <div v-if="started" class="start">スタート！！</div>
+    </transition>
+    <transition name="fade">
       <button v-if="retryShown" class="retry" @click="retry">↻</button>
     </transition>
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
