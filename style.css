@@ -17,7 +17,7 @@ body {
 
 #app {
   display: grid;
-  width: 100vmin;
+  width: calc(100vmin - 3rem);
   height: 100vmin;
   margin: auto;
 }
