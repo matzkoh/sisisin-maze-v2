@@ -158,6 +158,10 @@ body {
   transform: scale(1.1);
 }
 
+.knzw {
+  max-width: 100%;
+}
+
 .time {
   font: 2rem bold;
 }
