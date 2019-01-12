@@ -22,7 +22,7 @@ body {
 
 .board {
   display: grid;
-  grid-template-rows: repeat(15, 1fr);
+  grid-template-rows: repeat(15, minmax(1fr, 50px));
   grid-template-columns: repeat(15, 1fr);
   padding: 1%;
   user-select: none;
