@@ -154,6 +154,9 @@ new Vue({
   el: '#app',
 
   data() {
+    const board = new Board(15, 15);
+    window.board = board;
+
     return {
       started: false,
       finished: false,
@@ -161,7 +164,7 @@ new Vue({
       retryShown: false,
       startedAt: 0,
       endedAt: 0,
-      board: new Board(15, 15),
+      board,
     };
   },
 
