@@ -193,9 +193,6 @@ body {
 
 .ia-2 {
   font-size: 2em;
-}
-
-.vollkorn {
   font-family: "Vollkorn", serif;
 }
 
@@ -207,7 +204,7 @@ body {
   background: #010;
   border-radius: 0.1em;
   color: #fff;
-  background-image: linear-gradient(-60deg, #fff0 0%, #fffc 0%, #fff3 20%, #fff0 20%);
+  background-image: linear-gradient(0, #fff0 0%, #fffc 0%, #fff3 20%, #fff0 20%);
   text-shadow: 0 0 0.1em #ff0;
   font: 2rem bold;
 }

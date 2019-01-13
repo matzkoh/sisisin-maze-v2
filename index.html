@@ -19,8 +19,8 @@
     </div>
     <transition name="fade">
       <div v-if="!started" class="splash" @click="start">
-        <div>The road to</div>
-        <div class="ia-2 vollkorn">Innovation Agency</div>
+        <div class="ia-1">The road to</div>
+        <div class="ia-2">Innovation Agency</div>
         <div class="wasd">
           ↑<br>
           <code class="key">w</code><br>
@@ -39,7 +39,7 @@
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
       <div class="modal-header">
         <div class="ia-1"><b>We</b> are the</div>
-        <div class="ia-2 vollkorn">Innovation Agency</div>
+        <div class="ia-2">Innovation Agency</div>
       </div>
       <div class="modal-body">
         <img class="knzw vibrate" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/knzw2.png">
