@@ -2,12 +2,6 @@
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-window.tocca({
-  swipeThreshold: 10,
-  dbltapThreshold: 0,
-  justTouchEvents: true,
-});
-
 console.log(window.tocca());
 
 Vue.component('modal-alert', {
