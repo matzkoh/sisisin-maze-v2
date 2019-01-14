@@ -1,3 +1,7 @@
+[v-cloak] {
+  display: none;
+}
+
 html {
   touch-action: manipulation;
 }
@@ -17,9 +21,9 @@ body {
 
 #app {
   display: grid;
-  width: calc(100vmin - 3rem);
+  width: calc(100vh - 3rem);
+  height: 100vh;
   max-width: 640px;
-  height: 100vmin;
   max-height: calc(640px + 3rem);
   margin: auto;
 }
@@ -27,7 +31,7 @@ body {
 .board {
   position: relative;
   display: grid;
-  grid-template-rows: 3rem repeat(var(--width), 1fr);
+  grid-template-rows: repeat(var(--width), 1fr);
   grid-template-columns: repeat(var(--height), 1fr);
   user-select: none;
 }

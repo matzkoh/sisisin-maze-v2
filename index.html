@@ -28,17 +28,17 @@
         </div>
       </div>
     </transition>
-    <div class="balloon">
+<!--     <div class="balloon">
       
-    </div>
+    </div> -->
     <transition name="flash">
       <div v-if="started" class="start">スタート</div>
     </transition>
-    <transition name="fade">
+    <transition v-cloak name="fade">
       <div v-if="retryShown" class="retry" @click="retry">
       </div>
     </transition>
-    <modal-alert v-if="modalShown" @close="$emit('modalClosing')">
+    <modal-alert v-cloak v-if="modalShown" @close="$emit('modalClosing')">
       <div class="modal-header">
         <div class="ia-1"><b>We</b> are the</div>
         <div class="ia-2">Innovation Agency</div>
