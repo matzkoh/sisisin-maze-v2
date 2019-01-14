@@ -213,6 +213,11 @@ new Vue({
 
   mounted() {
     $(document).on('keydown', event => this.onKeyDown(event));
+    window.addEventListener(
+      'touchmove',
+      event => event.preventDefault(),
+      { passive: false }
+    );
   },
 
   destroyed() {
