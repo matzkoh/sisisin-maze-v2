@@ -3,11 +3,7 @@
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 window.tocca({
-  swipeThreshold: true,
-  tapThreshold: true,
-  dbltapThreshold: true,
-  longtapThreshold: true,
-  tapPrecision: true,
+  swipeThreshold: 0,
   justTouchEvents: true,
 });
 
@@ -204,6 +200,7 @@ new Vue({
     return {
       started: false,
       finished: false,
+      canInput: true,
       modalShown: false,
       retryShown: false,
       startedAt: 0,
@@ -225,10 +222,10 @@ new Vue({
   mounted() {
     $(document)
       .on('keydown', event => this.onKeyDown(event))
-      .on('swipeup', event => this.board.movePlayerUp())
-      .on('swipedown', event => this.board.movePlayerDown())
-      .on('swipeleft', event => this.board.movePlayerLeft())
-      .on('swiperight', event => this.board.movePlayerRight());
+      .on('swipeup', event => this.handleMove('up'))
+      .on('swipedown', event => this.handleMove('down'))
+      .on('swipeleft', event => this.handleMove('left'))
+      .on('swiperight', event => this.handleMove('right'));
 
     document.addEventListener(
       'touchmove',
@@ -243,11 +240,11 @@ new Vue({
 
   methods: {
     handleMove(direction) {
-      if (this.finished) {
+      if (!this.canInput || this.finished) {
         return;
       }
 
-      switch (event.key) {
+      switch (direction) {
         case 'up':
           this.board.movePlayerUp();
           break;
@@ -279,6 +276,12 @@ new Vue({
       if (this.board.player.y === 0) {
         this.finish();
       }
+
+      this.canInput = false;
+
+      setTimeout(() => {
+        this.canInput = true;
+      }, 0);
     },
 
     onKeyDown(event) {
@@ -304,7 +307,7 @@ new Vue({
           break;
 
         case 'Enter':
-          this.startAutoSolve();
+          this.handleMove('solve');
           break;
 
         default:
@@ -313,6 +316,8 @@ new Vue({
     },
 
     async startAutoSolve() {
+      this.canInput = false;
+
       const dirs = this.board.solve();
       const keys = 'wdsa';
       const quickness = Math.random() * 100;
@@ -324,6 +329,8 @@ new Vue({
 
         await wait(quickness);
       }
+
+      this.canInput = true;
     },
 
     start() {
