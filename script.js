@@ -3,7 +3,8 @@
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 window.tocca({
-  swipeThreshold: 0,
+  swipeThreshold: 10,
+  dbltapThreshold: 0,
   justTouchEvents: true,
 });
 
@@ -262,9 +263,6 @@ new Vue({
 
         case 'Enter':
           return this.handleMove('solve');
-
-        default:
-          return;
       }
     },
 
@@ -316,7 +314,7 @@ new Vue({
       const quickness = Math.random() * 100;
 
       for (const dir of dirs) {
-        this.handleMove();
+        this.handleMove(dir);
 
         await wait(quickness);
       }

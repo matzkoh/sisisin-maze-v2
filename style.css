@@ -24,15 +24,14 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: calc(100vh - 8rem);
+  width: calc(100vh - 4rem);
   height: 100vh;
   max-width: 100vw;
-  max-height: calc(100vw + 8rem);
+  max-height: calc(100vw + 4rem);
   margin: auto;
 }
 
-.board-header,
-.board-footer {
+.board-header {
  	position: relative;
   display: flex;
   height: 4rem;
@@ -40,12 +39,6 @@ body {
 
 .board-header {
   justify-content: flex-end;
-}
-
-.start-sign {
-  display: flex;
-  align-items: center;
-  font: 1.8rem/1 monospace;
 }
 
 .goal-sign {

@@ -20,9 +20,6 @@
     <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}" v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
-    <div class="board-footer" v-if="started" v-cloak>
-      <div class="start-sign">Start</div>
-    </div>
     <transition name="fade">
       <div v-if="!started" class="splash" @click="start">
         <div class="ia-1">The road to</div>
