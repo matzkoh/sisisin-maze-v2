@@ -13,19 +13,27 @@
 </head>
 <body>
   <div id="app">
-    <div class="board-header" v-if="started" v-cloak>
-      <img class="goal-sign" :class="{'vibrate-small': !finished}" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
-    </div>
-    <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}" v-cloak>
-      <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
-    </div>
-    <div class="board-footer" v-if="started" v-cloak>
-      <div class="arrow-container">
-        <div class="arrow arrow-up" @click="handleMove('up')">⬆</div>
-        <div class="arrow arrow-left" @click="handleMove('left')">⬅</div>
-        <div class="arrow arrow-right" @click="handleMove('right')">➡</div>
-        <div class="arrow arrow-down" @click="handleMove('down')">⬇</div>
+    <div class="container">
+      <div class="board-header" v-if="started" v-cloak>
+        <img class="goal-sign" :class="{'vibrate-small': !finished}" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
       </div>
+      <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}" v-cloak>
+        <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
+      </div>
+      <div class="board-footer" v-if="started" v-cloak>
+        <div class="arrow-container">
+          <div class="arrow arrow-up" @click="handleMove('up')">⬆</div>
+          <div class="arrow arrow-left" @click="handleMove('left')">⬅</div>
+          <div class="arrow arrow-right" @click="handleMove('right')">➡</div>
+          <div class="arrow arrow-down" @click="handleMove('down')">⬇</div>
+        </div>
+      </div>
+      <transition name="flash" v-cloak>
+        <div v-if="started" class="start">スタート</div>
+      </transition>
+      <transition name="fade" v-cloak>
+        <img v-if="retryShown" class="retry-balloon" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/balloon.png" @click="retry">
+      </transition>
     </div>
     <transition name="fade">
       <div v-if="!started" class="splash" @click="start">
@@ -38,12 +46,6 @@
           ↓
         </div>
       </div>
-    </transition>
-    <transition name="flash" v-cloak>
-      <div v-if="started" class="start">スタート</div>
-    </transition>
-    <transition name="fade" v-cloak>
-      <img v-if="retryShown" class="retry-balloon" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/balloon.png" @click="retry">
     </transition>
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')" v-cloak>
       <div class="modal-header">
