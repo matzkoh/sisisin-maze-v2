@@ -22,10 +22,10 @@
       </div>
       <div class="board-footer" v-if="started" v-cloak>
         <div class="arrow-container">
-          <div class="arrow arrow-up" @click="handleMove('up')">⬆</div>
-          <div class="arrow arrow-left" @click="handleMove('left')">⬅</div>
-          <div class="arrow arrow-right" @click="handleMove('right')">➡</div>
-          <div class="arrow arrow-down" @click="handleMove('down')">⬇</div>
+          <div class="arrow pointer arrow-up" @click="handleMove('up')">⬆</div>
+          <div class="arrow pointer arrow-left" @click="handleMove('left')">⬅</div>
+          <div class="arrow pointer arrow-right" @click="handleMove('right')">➡</div>
+          <div class="arrow pointer arrow-down" @click="handleMove('down')">⬇</div>
         </div>
       </div>
       <transition name="flash" v-cloak>
@@ -36,7 +36,7 @@
       </transition>
     </div>
     <transition name="fade">
-      <div v-if="!started" class="splash" @click="start">
+      <div v-if="!started" class="splash pointer" @click="start">
         <div class="ia-1">The road to</div>
         <div class="ia-2">Innovation Agency</div>
         <div class="wasd">
@@ -47,7 +47,7 @@
         </div>
       </div>
     </transition>
-    <modal-alert v-if="modalShown" @close="$emit('modalClosing')" v-cloak>
+    <modal-alert v-if="modalShown" class="bounce" @close="$emit('modalClosing')" v-cloak>
       <div class="modal-header">
         <div class="ia-1"><b>We</b> are the</div>
         <div class="ia-2">Innovation Agency</div>
