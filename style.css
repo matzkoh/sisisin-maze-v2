@@ -134,7 +134,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  font: 10vw bold sans-serif;
+  font: bold 5rem/1 sans-serif;
   color: #718cc6;
   white-space: nowrap;
   transform: translate(-50%, -50%) translateY(-100%);

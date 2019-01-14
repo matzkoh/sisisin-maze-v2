@@ -180,9 +180,9 @@ class Cell {
   get isPlayer() { return this.type === Cell.Player; }
 }
 
-Cell[Cell.Path = 0] = 'Path';
-Cell[Cell.Wall = 1] = 'Wall';
-Cell[Cell.Player = 2] = 'Player';
+Cell.Path = 0;
+Cell.Wall = 1;
+Cell.Player = 2;
 
 new Vue({
   el: '#app',
