@@ -87,7 +87,7 @@ class Board {
     this.player = cell;
   }
 
-  movePlayerTop() {
+  movePlayerUp() {
     const cell = this.player.top;
     if (cell && cell.isPath) {
       this.setPlayer(cell);
@@ -101,7 +101,7 @@ class Board {
     }
   }
 
-  movePlayerBottom() {
+  movePlayerDown() {
     const cell = this.player.bottom;
     if (cell && cell.isPath) {
       this.setPlayer(cell);
@@ -234,7 +234,7 @@ new Vue({
       switch (event.key) {
         case 'w':
         case 'ArrowUp':
-          this.board.movePlayerTop();
+          this.board.movePlayerUp();
           break;
 
         case 'd':
@@ -244,7 +244,7 @@ new Vue({
 
         case 's':
         case 'ArrowDown':
-          this.board.movePlayerBottom();
+          this.board.movePlayerDown();
           break;
 
         case 'a':

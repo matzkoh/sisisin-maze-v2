@@ -9,20 +9,19 @@
   <link rel="stylesheet" href="/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue2-touch-events@1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tocca"></script>
   <script src="/script.js" defer></script>
 </head>
 <body>
-  <div id="app">
+  <div id="app"
+    @swipeup="board.movePlayerUp"
+    @swiperight="board.movePlayerRight"
+    @swipedown="board.movePlayerDown"
+    @swipeleft="board.movePlayerLeft">
     <div class="board-header" v-if="started" v-cloak>
       <img class="goal-sign" :class="{'vibrate-small': !finished}" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>
-    <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}"
-      v-touch:swipe.top="board.movePlayerTop"
-      v-touch:swipe.right="board.movePlayerRight"
-      v-touch:swipe.bottom="board.movePlayerBottom"
-      v-touch:swipe.left="board.movePlayerLeft"
-      v-cloak>
+    <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}" v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <div class="board-footer" v-if="started" v-cloak>
