@@ -18,10 +18,10 @@
       <img class="goal-sign" :class="{'vibrate-small': !finished}" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>
     <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}"
-      v-touch:swipe.top="movePlayerTop"
-      v-touch:swipe.right="movePlayerRight"
-      v-touch:swipe.bottom="movePlayerBottom"
-      v-touch:swipe.left="movePlayerLeft"
+      v-touch:swipe.top="board.movePlayerTop"
+      v-touch:swipe.right="board.movePlayerRight"
+      v-touch:swipe.bottom="board.movePlayerBottom"
+      v-touch:swipe.left="board.movePlayerLeft"
       v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
