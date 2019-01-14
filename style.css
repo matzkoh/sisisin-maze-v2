@@ -1,5 +1,4 @@
 html {
-  --opt-color: #718cc6;
   touch-action: manipulation;
 }
 
@@ -78,7 +77,7 @@ body {
   left: 50%;
   top: 50%;
   font: bold 10vw sans-serif;
-  color: var(--opt-color);
+  color: #718cc6;
   white-space: nowrap;
   transform: translate(-50%, -50%) translateY(-100%);
   opacity: 0;
