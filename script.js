@@ -5,7 +5,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 Vue.component('modal-alert', {
   template: `
     <transition name="modal">
-      <div class="modal" @click="$emit('close')" v-bind="$attrs">
+      <div class="modal" @click="$emit('close')">
         <div class="modal-container" @click.stop>
           <slot/>
         </div>
