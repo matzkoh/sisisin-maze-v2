@@ -213,7 +213,8 @@ new Vue({
 
   mounted() {
     $(document).on('keydown', event => this.onKeyDown(event));
-    window.addEventListener(
+
+    document.addEventListener(
       'touchmove',
       event => event.preventDefault(),
       { passive: false }
