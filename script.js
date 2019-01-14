@@ -228,12 +228,6 @@ new Vue({
       event => event.preventDefault(),
       { passive: false }
     );
-
-    document.addEventListener(
-      'gesture',
-      event => event.preventDefault(),
-      { passive: false }
-    );
   },
 
   methods: {

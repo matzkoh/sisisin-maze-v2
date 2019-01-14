@@ -3,7 +3,7 @@
 }
 
 html {
-  touch-action: manipulation;
+  touch-action: none;
 }
 
 html,
@@ -55,12 +55,13 @@ body {
     "  .   up    .  "
     "left down right";
   align-items: center;
-  user-select: none;
+  pointer-events: none;
 }
 
 .arrow {
-  font: 3rem/1 monospace;
+  font: 3rem/1 sans-serif;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .arrow-up {
@@ -133,7 +134,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  font: bold 10vw sans-serif;
+  font: 10vw bold sans-serif;
   color: #718cc6;
   white-space: nowrap;
   transform: translate(-50%, -50%) translateY(-100%);
