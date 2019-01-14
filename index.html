@@ -14,7 +14,7 @@
 <body>
   <div id="app">
     <div class="balloon-container">
-      
+      <div class="balloon">Innovation Agency</div>
     </div>
     <div class="board" :style="{'--width': board.width, '--height': board.height}">
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
