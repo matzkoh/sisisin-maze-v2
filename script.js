@@ -2,6 +2,8 @@
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+Vue.use(vueTouchEvents);
+
 Vue.component('modal-alert', {
   template: `
     <transition name="modal">
