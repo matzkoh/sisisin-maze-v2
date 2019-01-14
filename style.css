@@ -227,7 +227,6 @@ body {
   text-align: center;
   box-shadow: 0 2px 8px #0006;
   transition: 300ms;
-  pointer-events: none;
 }
 
 .modal-body {
