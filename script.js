@@ -220,8 +220,14 @@ new Vue({
   },
 
   mounted() {
-    $(document).on('keydown swipeup swipedown swipeleft swiperight', event => {
-      this.onInput(event);
+    $(document).on('keydown swipeup swipedown swipeleft swiperight', async event => {
+      if (!this.canInput) {
+        return;
+      }
+
+      this.canInput = false;
+      await this.onInput(event);
+      this.canInput = true;
     });
 
     document.addEventListener(
@@ -231,48 +237,39 @@ new Vue({
     );
   },
 
-  destroyed() {
-    $(document).off('keydown');
-  },
-
   methods: {
-    onInput(event) {
+    async onInput(event) {
       switch (event.key || event.type) {
         case 'w':
         case 'ArrowUp':
         case 'swipeup':
-          this.handleMove('up');
-          break;
+          return this.handleMove('up');
 
         case 'd':
         case 'ArrowRight':
         case 'swiperight':
-          this.handleMove('right');
-          break;
+          return this.handleMove('right');
 
         case 's':
         case 'ArrowDown':
         case 'swipedown':
-          this.handleMove('down');
-          break;
+          return this.handleMove('down');
 
         case 'a':
         case 'ArrowLeft':
         case 'swipeleft':
-          this.handleMove('left');
-          break;
+          return this.handleMove('left');
 
         case 'Enter':
-          this.handleMove('solve');
-          break;
+          return this.handleMove('solve');
 
         default:
           return;
       }
     },
 
-    handleMove(direction) {
-      if (!this.canInput || this.finished) {
+    async handleMove(direction) {
+      if (this.finished) {
         return;
       }
 
@@ -298,7 +295,7 @@ new Vue({
           break;
 
         case 'solve':
-          this.startAutoSolve();
+          await this.startAutoSolve();
           break;
 
         default:
@@ -312,17 +309,9 @@ new Vue({
       if (this.board.player.y === 0) {
         this.finish();
       }
-
-      this.canInput = false;
-
-      setTimeout(() => {
-        this.canInput = true;
-      }, 0);
     },
 
     async startAutoSolve() {
-      this.canInput = false;
-
       const dirs = this.board.solve();
       const quickness = Math.random() * 100;
 
@@ -331,8 +320,6 @@ new Vue({
 
         await wait(quickness);
       }
-
-      this.canInput = true;
     },
 
     start() {
