@@ -227,18 +227,22 @@ new Vue({
 
       switch (event.key) {
         case 'w':
+        case 'ArrowUp':
           this.board.movePlayerTop();
           break;
 
         case 'd':
+        case 'ArrowRight':
           this.board.movePlayerRight();
           break;
 
         case 's':
+        case 'ArrowDown':
           this.board.movePlayerBottom();
           break;
 
         case 'a':
+        case 'ArrowLeft':
           this.board.movePlayerLeft();
           break;
 
