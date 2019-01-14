@@ -188,7 +188,7 @@ new Vue({
   el: '#app',
 
   data() {
-    const board = new Board(9, 9);
+    const board = new Board(15, 15);
 
     return {
       started: false,
