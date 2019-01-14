@@ -13,10 +13,10 @@
 </head>
 <body>
   <div id="app">
-    <div class="goal-container">
+    <div class="goal-container" v-cloak>
       <img class="goal" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>
-    <div class="board" :style="{'--width': board.width, '--height': board.height}">
+    <div class="board" :style="{'--width': board.width, '--height': board.height}" v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <transition name="fade">
@@ -31,14 +31,14 @@
         </div>
       </div>
     </transition>
-    <transition name="flash">
+    <transition name="flash" v-cloak>
       <div v-if="started" class="start">スタート</div>
     </transition>
-    <transition v-cloak name="fade">
+    <transition name="fade" v-cloak>
       <div v-if="retryShown" class="retry" @click="retry">
       </div>
     </transition>
-    <modal-alert v-cloak v-if="modalShown" @close="$emit('modalClosing')">
+    <modal-alert v-if="modalShown" @close="$emit('modalClosing')" v-cloak>
       <div class="modal-header">
         <div class="ia-1"><b>We</b> are the</div>
         <div class="ia-2">Innovation Agency</div>
