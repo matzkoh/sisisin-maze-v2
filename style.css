@@ -129,11 +129,7 @@ body {
 }
 
 .retry-balloon:hover {
-  animation: 0.1s vibrate infinite;
-}
-
-.retry-balloon:active {
-  --scale: 0.9;
+  animation: 0.1s vibrate-small infinite;
 }
 
 .fade-enter,
