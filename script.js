@@ -2,8 +2,6 @@
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-console.log(window.tocca());
-
 Vue.component('modal-alert', {
   template: `
     <transition name="modal">
@@ -215,7 +213,7 @@ new Vue({
   },
 
   mounted() {
-    $(document).on('keydown swipeup swipedown swipeleft swiperight', async event => {
+    $(document).on('keydown', async event => {
       if (!this.canInput) {
         return;
       }
@@ -230,6 +228,12 @@ new Vue({
       event => event.preventDefault(),
       { passive: false }
     );
+
+    document.addEventListener(
+      'gesture',
+      event => event.preventDefault(),
+      { passive: false }
+    );
   },
 
   methods: {
@@ -237,22 +241,18 @@ new Vue({
       switch (event.key || event.type) {
         case 'w':
         case 'ArrowUp':
-        case 'swipeup':
           return this.handleMove('up');
 
         case 'd':
         case 'ArrowRight':
-        case 'swiperight':
           return this.handleMove('right');
 
         case 's':
         case 'ArrowDown':
-        case 'swipedown':
           return this.handleMove('down');
 
         case 'a':
         case 'ArrowLeft':
-        case 'swipeleft':
           return this.handleMove('left');
 
         case 'Enter':

@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tocca"></script>
   <script src="/script.js" defer></script>
 </head>
 <body>
@@ -22,10 +21,10 @@
     </div>
     <div class="board-footer" v-if="started" v-cloak>
       <div class="arrow-container">
-        <div class="arrow arrow-up">⬆</div>
-        <div class="arrow arrow-left">⬅</div>
-        <div class="arrow arrow-right">➡</div>
-        <div class="arrow arrow-down">⬇</div>
+        <div class="arrow arrow-up" @click="handleMove('up')">⬆</div>
+        <div class="arrow arrow-left" @click="handleMove('left')">⬅</div>
+        <div class="arrow arrow-right" @click="handleMove('right')">➡</div>
+        <div class="arrow arrow-down" @click="handleMove('down')">⬇</div>
       </div>
     </div>
     <transition name="fade">

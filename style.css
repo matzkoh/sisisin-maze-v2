@@ -55,10 +55,12 @@ body {
     "  .   up    .  "
     "left down right";
   align-items: center;
+  user-select: none;
 }
 
 .arrow {
   font: 3rem/1 monospace;
+  cursor: pointer;
 }
 
 .arrow-up {
