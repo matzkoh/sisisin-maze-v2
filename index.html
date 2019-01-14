@@ -13,11 +13,7 @@
   <script src="/script.js" defer></script>
 </head>
 <body>
-  <div id="app"
-    @swipeup="board.movePlayerUp"
-    @swiperight="board.movePlayerRight"
-    @swipedown="board.movePlayerDown"
-    @swipeleft="board.movePlayerLeft">
+  <div id="app">
     <div class="board-header" v-if="started" v-cloak>
       <img class="goal-sign" :class="{'vibrate-small': !finished}" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>

@@ -2,6 +2,17 @@
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+window.tocca({
+  swipeThreshold: true,
+  tapThreshold: true,
+  dbltapThreshold: true,
+  longtapThreshold: true,
+  tapPrecision: true,
+  justTouchEvents: true,
+});
+
+console.log(window.tocca());
+
 Vue.component('modal-alert', {
   template: `
     <transition name="modal">
@@ -212,7 +223,12 @@ new Vue({
   },
 
   mounted() {
-    $(document).on('keydown', event => this.onKeyDown(event));
+    $(document)
+      .on('keydown', event => this.onKeyDown(event))
+      .on('swipeup', event => this.board.movePlayerUp())
+      .on('swipedown', event => this.board.movePlayerDown())
+      .on('swipeleft', event => this.board.movePlayerLeft())
+      .on('swiperight', event => this.board.movePlayerRight());
 
     document.addEventListener(
       'touchmove',
@@ -226,33 +242,29 @@ new Vue({
   },
 
   methods: {
-    onKeyDown(event) {
+    handleMove(direction) {
       if (this.finished) {
         return;
       }
 
       switch (event.key) {
-        case 'w':
-        case 'ArrowUp':
+        case 'up':
           this.board.movePlayerUp();
           break;
 
-        case 'd':
-        case 'ArrowRight':
+        case 'right':
           this.board.movePlayerRight();
           break;
 
-        case 's':
-        case 'ArrowDown':
+        case 'down':
           this.board.movePlayerDown();
           break;
 
-        case 'a':
-        case 'ArrowLeft':
+        case 'left':
           this.board.movePlayerLeft();
           break;
 
-        case 'Enter':
+        case 'solve':
           this.startAutoSolve();
           break;
 
@@ -266,6 +278,37 @@ new Vue({
 
       if (this.board.player.y === 0) {
         this.finish();
+      }
+    },
+
+    onKeyDown(event) {
+      switch (event.key) {
+        case 'w':
+        case 'ArrowUp':
+          this.handleMove('up');
+          break;
+
+        case 'd':
+        case 'ArrowRight':
+          this.handleMove('right');
+          break;
+
+        case 's':
+        case 'ArrowDown':
+          this.handleMove('down');
+          break;
+
+        case 'a':
+        case 'ArrowLeft':
+          this.handleMove('left');
+          break;
+
+        case 'Enter':
+          this.startAutoSolve();
+          break;
+
+        default:
+          return;
       }
     },
 
