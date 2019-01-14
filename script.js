@@ -188,7 +188,7 @@ new Vue({
   el: '#app',
 
   data() {
-    const board = new Board(15, 15);
+    const board = new Board(20, 30);
 
     return {
       started: false,
@@ -266,7 +266,7 @@ new Vue({
     async startAutoSolve() {
       const dirs = this.board.solve();
       const keys = 'wdsa';
-      const quickness = 50 + Math.random() * 50;
+      const quickness = Math.random() * 100;
 
       for (const dir of dirs) {
         document.dispatchEvent(
