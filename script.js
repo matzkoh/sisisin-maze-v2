@@ -220,12 +220,9 @@ new Vue({
   },
 
   mounted() {
-    $(document)
-      .on('keydown', event => this.onKeyDown(event))
-      .on('swipeup', event => this.handleMove('up'))
-      .on('swipedown', event => this.handleMove('down'))
-      .on('swipeleft', event => this.handleMove('left'))
-      .on('swiperight', event => this.handleMove('right'));
+    $(document).on('keydown swipeup swipedown swipeleft swiperight', event => {
+      this.onInput(event);
+    });
 
     document.addEventListener(
       'touchmove',
@@ -239,24 +236,63 @@ new Vue({
   },
 
   methods: {
+    onInput(event) {
+      switch (event.key || event.type) {
+        case 'w':
+        case 'ArrowUp':
+        case 'swipeup':
+          this.handleMove('up');
+          break;
+
+        case 'd':
+        case 'ArrowRight':
+        case 'swiperight':
+          this.handleMove('right');
+          break;
+
+        case 's':
+        case 'ArrowDown':
+        case 'swipedown':
+          this.handleMove('down');
+          break;
+
+        case 'a':
+        case 'ArrowLeft':
+        case 'swipeleft':
+          this.handleMove('left');
+          break;
+
+        case 'Enter':
+          this.handleMove('solve');
+          break;
+
+        default:
+          return;
+      }
+    },
+
     handleMove(direction) {
       if (!this.canInput || this.finished) {
         return;
       }
 
       switch (direction) {
+        case 0:
         case 'up':
           this.board.movePlayerUp();
           break;
 
+        case 1:
         case 'right':
           this.board.movePlayerRight();
           break;
 
+        case 2:
         case 'down':
           this.board.movePlayerDown();
           break;
 
+        case 3:
         case 'left':
           this.board.movePlayerLeft();
           break;
@@ -284,48 +320,14 @@ new Vue({
       }, 0);
     },
 
-    onKeyDown(event) {
-      switch (event.key) {
-        case 'w':
-        case 'ArrowUp':
-          this.handleMove('up');
-          break;
-
-        case 'd':
-        case 'ArrowRight':
-          this.handleMove('right');
-          break;
-
-        case 's':
-        case 'ArrowDown':
-          this.handleMove('down');
-          break;
-
-        case 'a':
-        case 'ArrowLeft':
-          this.handleMove('left');
-          break;
-
-        case 'Enter':
-          this.handleMove('solve');
-          break;
-
-        default:
-          return;
-      }
-    },
-
     async startAutoSolve() {
       this.canInput = false;
 
       const dirs = this.board.solve();
-      const keys = 'wdsa';
       const quickness = Math.random() * 100;
 
       for (const dir of dirs) {
-        document.dispatchEvent(
-          new KeyboardEvent('keydown', {key: keys[dir]})
-        );
+        this.handleMove();
 
         await wait(quickness);
       }
