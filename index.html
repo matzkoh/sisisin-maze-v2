@@ -14,9 +14,7 @@
 <body>
   <div id="app">
     <div class="board-header" v-cloak>
-      <div class="goal-sign">
-        <img class="goal-sign-img" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
-      </div>
+      <img class="goal-sign" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>
     <div class="board" :style="{'--width': board.width, '--height': board.height}" v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
