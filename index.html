@@ -32,7 +32,7 @@
         <div v-if="started" class="start">スタート</div>
       </transition>
       <transition name="fade" v-cloak>
-        <img v-if="retryShown" class="retry-balloon" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/balloon.png" @click="retry">
+        <img v-if="retryShown" class="retry pointer" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/balloon.png" @click="retry">
       </transition>
     </div>
     <transition name="fade">

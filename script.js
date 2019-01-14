@@ -328,6 +328,8 @@ new Vue({
       await new Promise(resolve => this.$once('modalClosing', resolve));
 
       this.modalShown = false;
+
+      await wait(300);
     },
 
     retry() {

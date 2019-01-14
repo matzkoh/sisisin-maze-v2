@@ -96,7 +96,6 @@ body {
 
 .wall {
   background: url("https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/sisisin.jpg") center / cover no-repeat;
-  box-shadow: 1px 1px #000;
 }
 
 .player {
@@ -147,16 +146,16 @@ body {
   transition: 1s ease-in;
 }
 
-.retry-balloon {
+.retry {
   position: absolute;
   right: 12%;
   top: calc(3rem + 8%);
   max-width: 50%;
   transform-origin: right top;
-  transition: 200ms ease-out;
+  transition: 300ms;
 }
 
-.retry-balloon:hover {
+.retry:hover {
   animation: 0.1s vibrate-small infinite;
 }
 
@@ -200,7 +199,6 @@ body {
 }
 
 .vibrate {
-  --vibrate-range: 0.2rem;
   animation: 0.1s vibrate infinite;
 }
 
@@ -217,7 +215,7 @@ body {
   bottom: 0;
   background-color: #0008;
   z-index: 9999;
-  transition: 300ms ease;
+  transition: 300ms;
   pointer-events: auto;
 }
 
@@ -228,7 +226,7 @@ body {
   border-radius: 4px;
   text-align: center;
   box-shadow: 0 2px 8px #0006;
-  transition: 300ms ease;
+  transition: 300ms;
   pointer-events: none;
 }
 
