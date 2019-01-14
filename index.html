@@ -21,11 +21,11 @@
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
     <div class="board-footer" v-if="started" v-cloak>
-      <div class="arrow-keys">
-        <div class="arrow-up">⬆</div>
-        <div class="arrow-left">⬅</div>
-        <div class="arrow-right">➡</div>
-        <div class="arrow-down">⬇</div>
+      <div class="arrow-container">
+        <div class="arrow arrow-up">⬆</div>
+        <div class="arrow arrow-left">⬅</div>
+        <div class="arrow arrow-right">➡</div>
+        <div class="arrow arrow-down">⬇</div>
       </div>
     </div>
     <transition name="fade">
