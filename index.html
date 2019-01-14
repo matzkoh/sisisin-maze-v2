@@ -13,13 +13,13 @@
 </head>
 <body>
   <div id="app">
-    <div class="board-header" v-cloak>
+    <div class="board-header" v-if="started" v-cloak>
       <img class="goal-sign" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/ia.png">
     </div>
-    <div class="board" :style="{'--width': board.width, '--height': board.height}" v-cloak>
+    <div class="board" v-if="started" :style="{'--width': board.width, '--height': board.height}" v-cloak>
       <div v-for="(cell, i) in board.list" :key="i" class="cell" :class="['path', 'wall', 'player'][cell.type]"></div>
     </div>
-    <div class="board-footer" v-cloak>
+    <div class="board-footer" v-if="started" v-cloak>
       <div class="start-sign">Start</div>
     </div>
     <transition name="fade">
@@ -38,8 +38,7 @@
       <div v-if="started" class="start">スタート</div>
     </transition>
     <transition name="fade" v-cloak>
-      <div v-if="retryShown" class="retry" @click="retry">
-      </div>
+      <img v-if="retryShown" class="retry-balloon" src="https://cdn.glitch.com/38572a42-87ea-47a9-8d6f-0c657f668a74/balloon.png" @click="retry">
     </transition>
     <modal-alert v-if="modalShown" @close="$emit('modalClosing')" v-cloak>
       <div class="modal-header">

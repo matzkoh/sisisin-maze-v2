@@ -21,6 +21,7 @@ body {
 }
 
 #app {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: calc(100vh - 8rem);
@@ -118,22 +119,12 @@ body {
   transition: 1s ease-in;
 }
 
-.retry {
+.retry-balloon {
   position: absolute;
-  right: -25px;
-  top: -25px;
-  box-sizing: content-box;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border: none;
-  line-height: 1;
-  background: #fff;
-  border-radius: 50%;
-  color: inherit;
-  font-size: 40px;
-  box-shadow: 0 0 0 10px #000c;
-  outline: none;
+  right: 0;
+  top: 0;
+  max-width: 80%;
+  max-height: calc((100% - 8rem) * 0.8);
   transition: 200ms ease-out;
 }
 
@@ -142,7 +133,7 @@ body {
 }
 
 .retry:hover {
-  box-shadow: 0 0 0 10px #00cc;
+  transform: scale(1.1);
 }
 
 .fade-enter,
